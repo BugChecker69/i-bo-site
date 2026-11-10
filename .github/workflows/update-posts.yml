@@ -1,0 +1,33 @@
+name: Update Blog Posts JSON
+
+on:
+  push:
+    paths:
+      - 'blog/posts/**.html'
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run script to update posts.json
+        run: python scripts/update_posts.py
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog/posts.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update blog/posts.json [skip ci]" && git push)

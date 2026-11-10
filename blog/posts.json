@@ -6,13 +6,5 @@
     "category": "お知らせ",
     "summary": "2027年4月の開業に向け、公式Webサイトの立ち上げ準備を開始しました。事業の3本柱や今後の活動計画について紹介します。",
     "url": "posts/20261110-first-post.html"
-  },
-  {
-    "id": "20261109-test-post",
-    "date": "2026.11.09",
-    "title": "テスト記事タイトル",
-    "category": "検証",
-    "summary": "自動更新の動作テスト用記事です。GitHub Actionsによってposts.jsonが正しく生成されるか検証します。",
-    "url": "posts/20261109-test-post.html"
   }
 ]

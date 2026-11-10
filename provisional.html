@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I-BO OFFICE | 「楽しい」を見つけ共有する</title>
+  <meta name="description" content="現場のITサポート、業務自動化支援、ドローン空撮を提供する I-BO OFFICE の公式サイトです。">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+
+  <!-- ヘッダー / ナビゲーション -->
+  <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="#" class="text-xl font-bold tracking-wider text-cyan-400">I-BO OFFICE</a>
+      <nav class="hidden md:flex space-x-6 text-sm font-medium">
+        <a href="#services" class="hover:text-cyan-400 transition">Services</a>
+        <a href="#about" class="hover:text-cyan-400 transition">About</a>
+        <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+      </nav>
+      <a href="#contact" class="text-xs md:text-sm bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded font-medium transition">
+        お問い合わせ
+      </a>
+    </div>
+  </header>
+
+  <!-- ヒーローセクション -->
+  <section class="relative py-24 md:py-32 border-b border-slate-800 flex items-center justify-center text-center px-4">
+    <div class="max-w-3xl mx-auto">
+      <span class="text-xs uppercase tracking-widest text-cyan-400 font-semibold mb-3 inline-block">Official Project Launching Soon</span>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+        「楽しい」を見つけ共有する
+      </h1>
+      <p class="text-slate-400 text-base md:text-lg mb-8 leading-relaxed">
+        現場に寄り添うITサポート、小さな無駄を省く業務自動化、新たな視点を届けるドローン空撮。<br class="hidden sm:inline">
+        ビジネスと日々の課題を軽やかに解決します。
+      </p>
+      <div class="flex justify-center gap-4">
+        <a href="#services" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-6 py-3 rounded font-medium transition">
+          事業内容を見る
+        </a>
+        <a href="#contact" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded font-medium transition">
+          ご相談はこちら
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス（事業内容 3本柱） -->
+  <section id="services" class="py-20 max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Services</h2>
+      <p class="text-slate-400 text-sm">提供業務・ソリューション</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- サービス 1: ITサポート -->
+      <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 flex flex-col justify-between">
+        <div>
+          <div class="text-cyan-400 mb-4">
+            <!-- アイコンプレースホルダー -->
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">ITサポート</h3>
+          <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+            PC導入支援、キッティング、ネットワーク整備、社内ヘルプデスク対応。現場のIT環境を安定稼働へ導きます。
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-700/60">
+          <p class="text-xs text-slate-400">料金目安: <span class="text-slate-200 font-medium">ご相談・スポット対応可</span></p>
+        </div>
+      </div>
+
+      <!-- サービス 2: 業務自動化支援 -->
+      <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 flex flex-col justify-between">
+        <div>
+          <div class="text-cyan-400 mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">業務自動化支援</h3>
+          <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+            Google Apps Script（GAS）やAPIを活用した帳票・メール処理の自動化、生成AIを活用したプロンプト支援など。
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-700/60">
+          <p class="text-xs text-slate-400">料金目安: <span class="text-slate-200 font-medium">要件ヒアリング後にお見積り</span></p>
+        </div>
+      </div>
+
+      <!-- サービス 3: ドローン空撮 -->
+      <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 flex flex-col justify-between">
+        <div>
+          <div class="text-cyan-400 mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">ドローン空撮</h3>
+          <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+            施設外観・PR用写真/動画の撮影、高所点検。二等無人航空機操縦士資格に基づき、関係各所への申請を含め安全に運航します。
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-700/60">
+          <p class="text-xs text-slate-400">料金目安: <span class="text-slate-200 font-medium">半日 / 1日フライトプラン等</span></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About / 概要 -->
+  <section id="about" class="py-20 bg-slate-800/40 border-t border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">About</h2>
+        <p class="text-slate-400 text-sm">屋号・拠点情報</p>
+      </div>
+
+      <div class="bg-slate-800/80 border border-slate-700 rounded-lg p-6 md:p-8 space-y-4 text-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-3 py-2 border-b border-slate-700/50">
+          <span class="text-slate-400">屋号</span>
+          <span class="sm:col-span-2 text-white font-medium">I-BO OFFICE</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 py-2 border-b border-slate-700/50">
+          <span class="text-slate-400">拠点</span>
+          <span class="sm:col-span-2 text-white font-medium">東京都（首都圏近郊対応）</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 py-2 border-b border-slate-700/50">
+          <span class="text-slate-400">保有資格・登録</span>
+          <span class="sm:col-span-2 text-slate-300">
+            <!-- 資格一覧プレースホルダー -->
+            二等無人航空機操縦士 / IT関連資格
+          </span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 py-2">
+          <span class="text-slate-400">連絡先</span>
+          <span class="sm:col-span-2 text-cyan-400 font-mono">info@i-bo.jp</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ -->
+  <section id="contact" class="py-20 max-w-4xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Contact</h2>
+      <p class="text-slate-400 text-sm">お問い合わせ・ご相談</p>
+    </div>
+
+    <!-- フォーム枠（FormspreeまたはGoogleフォーム埋め込み枠） -->
+    <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 md:p-8">
+      <div class="text-center py-8">
+        <p class="text-slate-300 mb-6">
+          案件のご相談・お見積り依頼は下記メールアドレスまでお気軽にお問い合わせください。
+        </p>
+        <a href="mailto:info@i-bo.jp" class="inline-block bg-cyan-600 hover:bg-cyan-500 text-white font-medium px-8 py-3 rounded transition font-mono">
+          info@i-bo.jp へメールを送信
+        </a>
+        <p class="text-xs text-slate-400 mt-4">
+          ※正式なWebフォームは準備中です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="border-t border-slate-800 py-8 text-center text-xs text-slate-400">
+    <p>&copy; 2026-2027 I-BO OFFICE. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

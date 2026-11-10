@@ -1,245 +1,184 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>i-bo.jp | 「楽しい」を見つけ共有する</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@600;900&family=Noto+Sans+JP:wght@300;500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #090a0f;
-      --card-bg: rgba(18, 22, 36, 0.7);
-      --accent-cyan: #00f2fe;
-      --accent-blue: #4facfe;
-      --accent-purple: #7928ca;
-      --text-main: #e2e8f0;
-      --text-sub: #94a3b8;
-      --border-glow: rgba(0, 242, 254, 0.25);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: var(--bg);
-      color: var(--text-main);
-      font-family: 'JetBrains Mono', 'Noto Sans JP', monospace;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow-x: hidden;
-      padding: 24px;
-    }
-
-    .grid-overlay {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(0, 242, 254, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 242, 254, 0.04) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
-      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
-    }
-
-    .glow-sphere {
-      position: absolute;
-      width: 450px;
-      height: 450px;
-      background: radial-gradient(circle, var(--accent-purple) 0%, rgba(79, 172, 254, 0.2) 50%, transparent 70%);
-      filter: blur(80px);
-      opacity: 0.5;
-      pointer-events: none;
-      animation: float 10s ease-in-out infinite alternate;
-    }
-
-    @keyframes float {
-      0% { transform: translate(-30%, -20%) scale(1); }
-      100% { transform: translate(30%, 20%) scale(1.15); }
-    }
-
-    .container {
-      position: relative;
-      z-index: 10;
-      max-width: 640px;
-      width: 100%;
-      background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-glow);
-      border-radius: 16px;
-      padding: 48px 36px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 254, 0.1);
-      text-align: center;
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0, 242, 254, 0.08);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      padding: 6px 14px;
-      border-radius: 9999px;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent-cyan);
-      margin-bottom: 24px;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background-color: var(--accent-cyan);
-      box-shadow: 0 0 8px var(--accent-cyan);
-      animation: pulse 1.8s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(0.8); }
-    }
-
-    h1.domain-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 80%, var(--accent-blue) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
-      line-height: 1.1;
-    }
-
-    .tagline {
-      font-size: 1.05rem;
-      color: var(--text-sub);
-      font-weight: 500;
-      margin-bottom: 36px;
-      letter-spacing: 0.08em;
-    }
-
-    .console-box {
-      background: rgba(8, 10, 16, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 16px 20px;
-      text-align: left;
-      font-size: 0.85rem;
-      color: #94a3b8;
-      margin-bottom: 36px;
-      line-height: 1.6;
-    }
-
-    .console-line {
-      display: flex;
-      gap: 10px;
-    }
-
-    .console-line span.prompt {
-      color: var(--accent-cyan);
-      user-select: none;
-    }
-
-    .console-line span.active {
-      color: #38bdf8;
-    }
-
-    .progress-wrapper {
-      margin-top: 10px;
-      width: 100%;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      width: 68%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
-      box-shadow: 0 0 10px var(--accent-cyan);
-      border-radius: 2px;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--accent-cyan);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 10px 20px;
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      border-radius: 8px;
-      transition: all 0.25s ease;
-      background: rgba(0, 242, 254, 0.03);
-    }
-
-    .contact-link:hover {
-      background: rgba(0, 242, 254, 0.12);
-      border-color: var(--accent-cyan);
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
-      transform: translateY(-2px);
-    }
-
-    footer {
-      margin-top: 36px;
-      font-size: 0.72rem;
-      color: #475569;
-      letter-spacing: 0.06em;
-    }
-  </style>
+  <title>I-BO OFFICE | 「楽しい」を見つけ共有する</title>
+  <meta name="description" content="現場のITサポート、業務自動化支援、ドローン空撮を提供する I-BO OFFICE の公式サイトです。">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="grid-overlay"></div>
-  <div class="glow-sphere"></div>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
 
-  <main class="container">
-    <div class="status-badge">
-      <span class="status-dot"></span>
-      System Deployment in Progress
-    </div>
-
-    <h1 class="domain-title">i-bo.jp</h1>
-    <p class="tagline">「楽しい」を見つけ共有する</p>
-
-    <div class="console-box">
-      <div class="console-line">
-        <span class="prompt">&gt;</span>
-        <span>STATUS: Initializing platform architecture...</span>
-      </div>
-      <div class="console-line">
-        <span class="prompt">&gt;</span>
-        <span class="active">SYSTEM: Online [DNS / Routing / SSL Validated]</span>
-      </div>
-      <div class="progress-wrapper">
-        <div class="progress-bar"></div>
-      </div>
-    </div>
-
-    <div>
-      <a href="mailto:info@i-bo.jp" class="contact-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-        </svg>
-        Contact: info@i-bo.jp
+  <!-- ヘッダー / ナビゲーション -->
+  <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center">
+        <img src="images/IBOF_logo_128.png" alt="I-BO OFFICE" class="h-9 w-auto">
+      </a>
+      <nav class="hidden md:flex space-x-6 text-sm font-medium">
+        <a href="#services" class="hover:text-cyan-400 transition">Services</a>
+        <a href="#about" class="hover:text-cyan-400 transition">About</a>
+        <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+      </nav>
+      <a href="#contact" class="text-xs md:text-sm bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded font-medium transition">
+        お問い合わせ
       </a>
     </div>
+  </header>
 
-    <footer>
-      &copy; 2026 i-bo.jp. All rights reserved.
-    </footer>
+  <!-- ヒーローセクション -->
+  <section class="relative py-20 md:py-32 border-b border-slate-800 flex items-center justify-center text-center px-4">
+    <div class="max-w-4xl mx-auto">
+      <span class="text-xs uppercase tracking-widest text-cyan-400 font-semibold mb-3 inline-block">Official Project Launching Soon</span>
+      
+      <!-- キャッチコピー -->
+      <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+        <span class="inline-block">「楽しい」を</span><span class="inline-block">見つけ共有する</span>
+      </h1>
+      
+      <!-- リード文 -->
+      <p class="text-slate-300 text-sm sm:text-base md:text-lg mb-8 leading-relaxed max-w-2xl mx-auto">
+        <span class="inline-block">現場に寄り添うITサポート、</span>
+        <span class="inline-block">小さな無駄を省く業務自動化、</span>
+        <span class="inline-block">新たな視点を届けるドローン空撮。</span>
+        <span class="block mt-2 text-slate-400 text-xs sm:text-sm md:text-base">ビジネスと日々の課題を軽やかに解決します。</span>
+      </p>
+
+      <div class="flex justify-center gap-4">
+        <a href="#services" class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-6 py-3 rounded font-medium text-sm md:text-base transition">
+          事業内容を見る
+        </a>
+        <a href="#contact" class="bg-cyan-600 hover:bg-cyan-500 text-white px-6 py-3 rounded font-medium text-sm md:text-base transition">
+          ご相談はこちら
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービス（事業内容 3本柱） -->
+  <section id="services" class="py-20 max-w-6xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Services</h2>
+      <p class="text-slate-400 text-sm">提供業務・ソリューション</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- サービス 1: ITサポート -->
+      <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 flex flex-col justify-between">
+        <div>
+          <div class="text-cyan-400 mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">ITサポート</h3>
+          <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+            PC導入支援、キッティング、ネットワーク整備、社内ヘルプデスク対応。現場のIT環境を安定稼働へ導きます。
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-700/60">
+          <p class="text-xs text-slate-400">料金目安: <span class="text-slate-200 font-medium">ご相談・スポット対応可</span></p>
+        </div>
+      </div>
+
+      <!-- サービス 2: 業務自動化支援 -->
+      <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 flex flex-col justify-between">
+        <div>
+          <div class="text-cyan-400 mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">業務自動化支援</h3>
+          <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+            Google Apps Script（GAS）やAPIを活用した帳票・メール処理の自動化、生成AIを活用したプロンプト支援など。
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-700/60">
+          <p class="text-xs text-slate-400">料金目安: <span class="text-slate-200 font-medium">要件ヒアリング後にお見積り</span></p>
+        </div>
+      </div>
+
+      <!-- サービス 3: ドローン空撮・現地調査 -->
+      <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 flex flex-col justify-between">
+        <div>
+          <div class="text-cyan-400 mb-4">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">ドローン空撮・現地調査</h3>
+          <p class="text-slate-400 text-sm mb-4 leading-relaxed">
+            施設外観・PR用映像の空撮や屋根・高所点検。二等無人航空機操縦士および2級小型船舶操縦士の知見を活かし、安全な運航管理のもと水上アクセスを伴う橋脚等の構造物調査・撮影にも対応します。
+          </p>
+        </div>
+        <div class="pt-4 border-t border-slate-700/60">
+          <p class="text-xs text-slate-400">料金目安: <span class="text-slate-200 font-medium">撮影規模・案件別にお見積り</span></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About / 概要 -->
+  <section id="about" class="py-20 bg-slate-800/40 border-t border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">About</h2>
+        <p class="text-slate-400 text-sm">屋号・拠点情報</p>
+      </div>
+
+      <div class="bg-slate-800/80 border border-slate-700 rounded-lg p-6 md:p-8 space-y-4 text-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-3 py-2 border-b border-slate-700/50">
+          <span class="text-slate-400">屋号</span>
+          <span class="sm:col-span-2 text-white font-medium">I-BO OFFICE</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 py-2 border-b border-slate-700/50">
+          <span class="text-slate-400">拠点</span>
+          <span class="sm:col-span-2 text-white font-medium">東京都（首都圏近郊対応）</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 py-2 border-b border-slate-700/50">
+          <span class="text-slate-400">保有資格・登録</span>
+          <span class="sm:col-span-2 text-slate-300">
+            二等無人航空機操縦士（国家資格） / 2級小型船舶操縦士 / 各種IT関連資格
+          </span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 py-2">
+          <span class="text-slate-400">連絡先</span>
+          <span class="sm:col-span-2 text-cyan-400 font-mono">info@i-bo.jp</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ -->
+  <section id="contact" class="py-20 max-w-4xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Contact</h2>
+      <p class="text-slate-400 text-sm">お問い合わせ・ご相談</p>
+    </div>
+
+    <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 md:p-8">
+      <div class="text-center py-8">
+        <p class="text-slate-300 text-sm md:text-base mb-6">
+          案件のご相談・お見積り依頼は下記メールアドレスまでお気軽にお問い合わせください。
+        </p>
+        <a href="mailto:info@i-bo.jp" class="inline-block bg-cyan-600 hover:bg-cyan-500 text-white font-medium px-5 sm:px-8 py-3 rounded text-sm sm:text-base whitespace-nowrap transition font-mono">
+          info@i-bo.jp へメールを送信
+        </a>
+        <p class="text-xs text-slate-400 mt-4">
+          ※正式なWebフォームは準備中です。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="border-t border-slate-800 py-8 text-center text-xs text-slate-400">
+    <p>&copy; 2026-2027 I-BO OFFICE. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

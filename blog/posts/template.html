@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【記事タイトル】 | I-BO OFFICE Blog</title>
+  <meta name="description" content="【記事の要約・概要文を記載】">
+  <meta name="robots" content="noindex, nofollow">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased flex flex-col min-h-screen">
 
+  <!-- ヘッダー / ナビゲーション -->
+  <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="../../provisional.html" class="flex items-center">
+        <img src="../../images/IBOF_logo_128.png" alt="I-BO OFFICE" class="h-9 w-auto">
+      </a>
+      <nav class="hidden md:flex space-x-6 text-sm font-medium">
+        <a href="../../provisional.html#services" class="hover:text-cyan-400 transition">Services</a>
+        <a href="../../provisional.html#about" class="hover:text-cyan-400 transition">About</a>
+        <a href="../index.html" class="text-cyan-400 font-semibold transition">Blog</a>
+        <a href="../../provisional.html#contact" class="hover:text-cyan-400 transition">Contact</a>
+      </nav>
+      <a href="../../provisional.html#contact" class="text-xs md:text-sm bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded font-medium transition">
+        お問い合わせ
+      </a>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="flex-grow max-w-3xl mx-auto px-4 py-16 w-full">
+    
+    <!-- パンくずリスト -->
+    <nav class="flex items-center gap-2 text-xs text-slate-400 mb-8 font-mono">
+      <a href="../../provisional.html" class="hover:text-slate-200">HOME</a>
+      <span>/</span>
+      <a href="../index.html" class="hover:text-slate-200">BLOG</a>
+      <span>/</span>
+      <span class="text-cyan-400 truncate">ARTICLE</span>
+    </nav>
+
+    <!-- 記事ヘッダー -->
+    <header class="mb-10 pb-8 border-b border-slate-800">
+      <div class="flex items-center gap-3 mb-4 text-xs">
+        <time datetime="YYYY-MM-DD" class="text-slate-400 font-mono">YYYY.MM.DD</time>
+        <span class="bg-cyan-950 text-cyan-400 border border-cyan-800/50 px-2.5 py-0.5 rounded font-medium">カテゴリ名</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight mb-4">
+        【記事タイトルを入力】
+      </h1>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+        【記事のリード文・導入要約を入力】
+      </p>
+    </header>
+
+    <!-- 記事本文 -->
+    <article class="space-y-8 text-slate-300 text-sm sm:text-base leading-relaxed">
+      
+      <!-- セクション 1 -->
+      <section>
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2 border-l-4 border-cyan-500 pl-3">
+          大見出し（H2）
+        </h2>
+        <p class="mb-4">
+          ここに本文を入力します。必要に応じて文章を展開してください。インラインコードは <code class="bg-slate-800 text-cyan-300 px-1.5 py-0.5 rounded font-mono text-sm">sample code</code> のように表現できます。
+        </p>
+      </section>
+
+      <!-- セクション 2（中見出し・リストを含む構成） -->
+      <section>
+        <h2 class="text-xl sm:text-2xl font-bold text-white mb-4 flex items-center gap-2 border-l-4 border-cyan-500 pl-3">
+          大見出し（H2）
+        </h2>
+        <h3 class="text-lg font-bold text-slate-200 mb-3">
+          中見出し（H3）
+        </h3>
+        <p class="mb-4">
+          箇条書きリストの配置例です。
+        </p>
+        <ul class="list-disc list-inside space-y-2 text-slate-400 pl-2 mb-6">
+          <li>リスト項目 1</li>
+          <li>リスト項目 2</li>
+          <li>リスト項目 3</li>
+        </ul>
+
+        <!-- ハイライト・カード枠 -->
+        <div class="bg-slate-800/60 border border-slate-700/80 rounded-lg p-5 my-4">
+          <h4 class="text-base font-bold text-white mb-2">ポイント・補足カード</h4>
+          <p class="text-slate-400 text-sm">
+            注目させたい補足情報や重要事項をここに記述します。
+          </p>
+        </div>
+      </section>
+
+    </article>
+
+    <!-- 記事フッター / 戻るボタン -->
+    <div class="mt-16 pt-8 border-t border-slate-800 flex justify

@@ -1,11 +1,11 @@
 [
   {
-    "id": "20261111-test-post",
+    "id": "20261109-test-post",
     "date": "2026.11.11",
     "title": "テスト記事タイトル",
     "category": "検証",
     "summary": "自動更新の動作テスト用記事です。GitHub Actionsによってposts.jsonが正しく生成されるか検証します。",
-    "url": "posts/20261111-test-post.html"
+    "url": "posts/20261109-test-post.html"
   },
   {
     "id": "20261110-first-post",

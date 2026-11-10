@@ -41,11 +41,13 @@
 
     <!-- 記事一覧コンテナ（JavaScriptで動的描画） -->
     <div id="posts-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <!-- 読み込み中プレースホルダー -->
       <div id="loading" class="col-span-full py-12 text-center text-slate-500 text-sm">
         記事を読み込み中...
       </div>
     </div>
+
+    <!-- ページ送りナビゲーション -->
+    <div id="pagination" class="mt-12 flex justify-center items-center gap-2"></div>
 
   </main>
 
@@ -54,22 +56,25 @@
     <p>&copy; 2026-2027 I-BO OFFICE. All rights reserved.</p>
   </footer>
 
-  <!-- 記事一覧取得・描画スクリプト -->
+  <!-- 記事一覧取得・ページネーション制御スクリプト -->
   <script>
-    (async function loadPosts() {
+    (async function initBlog() {
       const container = document.getElementById('posts-container');
+      const paginationContainer = document.getElementById('pagination');
       const loading = document.getElementById('loading');
+
+      const POSTS_PER_PAGE = 10;
+      let allPosts = [];
+      let currentPage = 1;
 
       try {
         const response = await fetch(`posts.json?t=${new Date().getTime()}`);
-        if (!response.ok) {
-          throw new Error('posts.json の取得に失敗しました');
-        }
+        if (!response.ok) throw new Error('posts.json の取得に失敗しました');
 
-        const posts = await response.json();
+        allPosts = await response.json();
         if (loading) loading.remove();
 
-        if (!posts || posts.length === 0) {
+        if (!allPosts || allPosts.length === 0) {
           container.innerHTML = `
             <div class="col-span-full py-12 text-center text-slate-400 text-sm">
               公開中の記事はまだありません。
@@ -78,6 +83,28 @@
           return;
         }
 
+        const urlParams = new URLSearchParams(window.location.search);
+        const pageFromUrl = parseInt(urlParams.get('page'), 10);
+        if (!isNaN(pageFromUrl) && pageFromUrl > 0) {
+          const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+          if (pageFromUrl <= totalPages) {
+            currentPage = pageFromUrl;
+          }
+        }
+
+        renderPage(currentPage);
+
+      } catch (error) {
+        if (loading) loading.remove();
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-rose-400 text-sm">
+            記事一覧の取得に失敗しました。
+          </div>
+        `;
+        console.error(error);
+      }
+
+      function renderCards(posts) {
         container.innerHTML = posts.map(post => `
           <a href="${post.url}" class="block bg-slate-800/60 hover:bg-slate-800/90 border border-slate-700/80 hover:border-cyan-500/50 rounded-lg p-6 transition duration-200 group focus:outline-none focus:ring-2 focus:ring-cyan-500">
             <article class="flex flex-col justify-between h-full">
@@ -102,16 +129,69 @@
             </article>
           </a>
         `).join('');
-
-      } catch (error) {
-        if (loading) loading.remove();
-        container.innerHTML = `
-          <div class="col-span-full py-12 text-center text-rose-400 text-sm">
-            記事一覧の取得に失敗しました。
-          </div>
-        `;
-        console.error(error);
       }
+
+      function renderPagination(total, current) {
+        if (total <= 1) {
+          paginationContainer.innerHTML = '';
+          return;
+        }
+
+        let html = '';
+
+        if (current > 1) {
+          html += `
+            <button onclick="changePage(${current - 1})" class="px-3 py-1.5 rounded text-xs font-medium border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white transition">
+              前へ
+            </button>
+          `;
+        }
+
+        for (let i = 1; i <= total; i++) {
+          if (i === current) {
+            html += `
+              <span class="px-3 py-1.5 rounded text-xs font-bold bg-cyan-600 text-white border border-cyan-500 font-mono">
+                ${i}
+              </span>
+            `;
+          } else {
+            html += `
+              <button onclick="changePage(${i})" class="px-3 py-1.5 rounded text-xs font-medium border border-slate-700 text-slate-400 hover:bg-slate-800 hover:text-white transition font-mono">
+                ${i}
+              </button>
+            `;
+          }
+        }
+
+        if (current < total) {
+          html += `
+            <button onclick="changePage(${current + 1})" class="px-3 py-1.5 rounded text-xs font-medium border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white transition">
+              次へ
+            </button>
+          `;
+        }
+
+        paginationContainer.innerHTML = html;
+      }
+
+      function renderPage(page) {
+        currentPage = page;
+        const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+
+        const start = (page - 1) * POSTS_PER_PAGE;
+        const end = start + POSTS_PER_PAGE;
+        const currentPosts = allPosts.slice(start, end);
+
+        renderCards(currentPosts);
+        renderPagination(totalPages, page);
+
+        const newUrl = page === 1 ? window.location.pathname : `?page=${page}`;
+        window.history.replaceState({ page }, '', newUrl);
+
+        window.scrollTo({ top: container.offsetTop - 100, behavior: 'smooth' });
+      }
+
+      window.changePage = renderPage;
     })();
   </script>
 

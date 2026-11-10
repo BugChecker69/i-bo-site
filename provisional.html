@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
 <head>
+  <meta name="robots" content="noindex, nofollow">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I-BO OFFICE | 「楽しい」を見つけ共有する</title>
@@ -10,6 +11,14 @@
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased">
 
+  <!-- お知らせバナー（初期状態は hidden で非表示） -->
+  <div id="notice-banner" class="hidden bg-amber-500 text-slate-950 px-4 py-2.5 text-xs sm:text-sm font-medium text-center shadow-md">
+    <div class="max-w-6xl mx-auto flex items-center justify-center gap-2 flex-wrap">
+      <span id="notice-badge" class="bg-slate-950 text-amber-400 text-xs px-2 py-0.5 rounded font-bold uppercase tracking-wider"></span>
+      <span id="notice-text"></span>
+    </div>
+  </div>
+  
   <!-- ヘッダー / ナビゲーション -->
   <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -180,5 +189,25 @@
     <p>&copy; 2026-2027 I-BO OFFICE. All rights reserved.</p>
   </footer>
 
+  <!-- お知らせ動的取得スクリプト -->
+  <script>
+    (async function loadNotice() {
+      try {
+        // ブラウザキャッシュを防止するためクエリパラメータを付与
+        const response = await fetch(`notice.json?t=${new Date().getTime()}`);
+        if (!response.ok) return;
+
+        const data = await response.json();
+        if (data.show) {
+          document.getElementById('notice-badge').textContent = data.badge || 'INFO';
+          document.getElementById('notice-text').textContent = data.message || '';
+          document.getElementById('notice-banner').classList.remove('hidden');
+        }
+      } catch (error) {
+        console.error('お知らせの取得に失敗しました:', error);
+      }
+    })();
+  </script>
+  
 </body>
 </html>

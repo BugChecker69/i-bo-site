@@ -40,6 +40,7 @@
         ただいま2027年4月の正式オープンに向けてWebサイトを準備中です。
       </p>
 
+      <!-- お問い合わせフォーム埋め込みエリア -->
       <div class="bg-slate-800/40 border border-slate-800 p-6 sm:p-8 rounded-2xl max-w-lg mx-auto text-left shadow-xl">
         <p class="text-slate-400 text-sm mb-6 text-center">
           事前のご相談やお仕事のご依頼は下記より承っております。
@@ -80,7 +81,7 @@
       <script>
         document.getElementById('teaser-contact-form').addEventListener('submit', async function (e) {
           e.preventDefault();
-          const GAS_URL = 'ステップ2で取得したGASウェブアプリURL';
+          const GAS_URL = 'https://script.google.com/macros/s/AKfycbwBBXlwAZwbAyTUBRrzEL2b9I3SkCXecdlLaHoO8YW-8UefJowlBOFj2VEee4OADiXdrg/exec';
 
           const form = e.target;
           const submitBtn = document.getElementById('teaser-submit-btn');

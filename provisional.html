@@ -71,70 +71,21 @@
     </div>
   </section>
 
-  <!-- サービス（事業内容 3本柱） -->
+  <!-- サービス（事業内容 3本柱・スプレッドシート連動料金表） -->
   <section id="services" class="py-20 max-w-6xl mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Services</h2>
-      <p class="text-slate-400 text-sm">提供業務・ソリューション</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Services &amp; Pricing</h2>
+      <p class="text-slate-400 text-sm">提供業務・ソリューション・料金目安</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
-      <!-- サービス 1: ITサポート -->
-      <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 flex flex-col justify-between">
-        <div>
-          <div class="text-cyan-400 mb-4">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">ITサポート</h3>
-          <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-            PC導入支援、キッティング、ネットワーク整備、社内ヘルプデスク対応。現場のIT環境を安定稼働へ導きます。
-          </p>
-        </div>
-        <div class="pt-4 border-t border-slate-700/60">
-          <p class="text-xs text-slate-400">料金目安: <span class="text-slate-200 font-medium">ご相談・スポット対応可</span></p>
-        </div>
-      </div>
-
-      <!-- サービス 2: 業務自動化支援 -->
-      <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 flex flex-col justify-between">
-        <div>
-          <div class="text-cyan-400 mb-4">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">業務自動化支援</h3>
-          <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-            Google Apps Script（GAS）やAPIを活用した帳票・メール処理の自動化、生成AIを活用したプロンプト支援など。
-          </p>
-        </div>
-        <div class="pt-4 border-t border-slate-700/60">
-          <p class="text-xs text-slate-400">料金目安: <span class="text-slate-200 font-medium">要件ヒアリング後にお見積り</span></p>
-        </div>
-      </div>
-
-      <!-- サービス 3: ドローン空撮・現地調査 -->
-      <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 flex flex-col justify-between">
-        <div>
-          <div class="text-cyan-400 mb-4">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">ドローン空撮・現地調査</h3>
-          <p class="text-slate-400 text-sm mb-4 leading-relaxed">
-            施設外観・PR用映像の空撮や屋根・高所点検。二等無人航空機操縦士および2級小型船舶操縦士の知見を活かし、安全な運航管理のもと水上アクセスを伴う橋脚等の構造物調査・撮影にも対応します。
-          </p>
-        </div>
-        <div class="pt-4 border-t border-slate-700/60">
-          <p class="text-xs text-slate-400">料金目安: <span class="text-slate-200 font-medium">撮影規模・案件別にお見積り</span></p>
-        </div>
-      </div>
-
+    <!-- スプレッドシートの公開CSVから自動生成 -->
+    <div id="service-menu-container" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <p class="text-slate-400 text-sm col-span-full text-center py-8">メニュー・料金表を読み込み中...</p>
     </div>
+
+    <p class="text-xs text-slate-500 text-center mt-8">
+      ※記載料金は目安です。要件・規模・撮影環境等に応じて個別にお見積りいたします（初回相談無料）。
+    </p>
   </section>
 
   <!-- About / 概要 -->
@@ -146,12 +97,12 @@
       </div>
 
       <div class="bg-slate-800/80 border border-slate-700 rounded-lg p-6 md:p-8 space-y-4 text-sm">
-      <div class="grid grid-cols-1 sm:grid-cols-3 py-2 border-b border-slate-700/50">
-        <span class="text-slate-400">屋号</span>
-        <span class="sm:col-span-2 text-white font-medium">
-          I-BO OFFICE <span class="text-xs text-slate-400 font-normal">（アイボー オフィス）</span>
-        </span>
-      </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 py-2 border-b border-slate-700/50">
+          <span class="text-slate-400">屋号</span>
+          <span class="sm:col-span-2 text-white font-medium">
+            I-BO OFFICE <span class="text-xs text-slate-400 font-normal">（アイボー オフィス）</span>
+          </span>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-3 py-2 border-b border-slate-700/50">
           <span class="text-slate-400">拠点</span>
           <span class="sm:col-span-2 text-white font-medium">東京都（全国対応可能）</span>
@@ -170,13 +121,11 @@
             </a>
           </span>
         </div>
-        
       </div>
     </div>
   </section>
 
   <!-- お問い合わせ -->
-<!-- Contact Section -->
   <section id="contact" class="py-24 border-t border-slate-800 bg-slate-900/50">
     <div class="max-w-3xl mx-auto px-4">
       <div class="text-center mb-12">
@@ -215,8 +164,8 @@
 
           <!-- お問い合わせ内容 -->
           <div>
-          <label for="message" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">お問い合わせ内容 <span class="text-cyan-400">*</span></label>
-          <textarea id="message" name="message" rows="5" required placeholder="ご相談内容やスケジュールのご希望などを入力してください。"
+            <label for="message" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1">お問い合わせ内容 <span class="text-cyan-400">*</span></label>
+            <textarea id="message" name="message" rows="5" required placeholder="ご相談内容やスケジュールのご希望などを入力してください。"
               class="w-full bg-slate-900/80 border border-slate-700 rounded-lg px-4 py-3 text-slate-200 placeholder-slate-500 text-sm focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition leading-relaxed"></textarea>
           </div>
 
@@ -238,19 +187,136 @@
     </div>
   </section>
 
+  <!-- フッター -->
+  <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500 space-y-2">
+    <div>
+      <a href="/privacy.html" class="text-slate-400 hover:text-cyan-400 transition underline underline-offset-4">
+        プライバシーポリシー
+      </a>
+    </div>
+    <p>&copy; 2026-2027 I-BO OFFICE. All rights reserved.</p>
+  </footer>
+
+  <!-- サービスメニュー・料金表（スプレッドシートCSV動的読み込みスクリプト） -->
+  <script>
+    (async function loadServiceMenus() {
+      // ★ここにスプレッドシート「ウェブに公開（CSV形式）」で発行したURLを貼り付けます★
+      const CSV_URL = 'ここに公開CSVのURLを貼り付け';
+
+      const CATEGORY_META = {
+        'ITサポート': {
+          desc: 'PC導入支援、キッティング、ネットワーク整備、社内ヘルプデスク対応。現場のIT環境を安定稼働へ導きます。',
+          icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                 </svg>`
+        },
+        '業務自動化支援': {
+          desc: 'Google Apps Script（GAS）やAPIを活用した帳票・メール処理の自動化、生成AIを活用したプロンプト支援など。',
+          icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                 </svg>`
+        },
+        'ドローン空撮・現地調査': {
+          desc: '施設外観・PR用映像の空撮や屋根・高所点検。二等無人航空機操縦士および2級小型船舶操縦士の知見を活かし、安全な運航管理のもと水上アクセスを伴う橋脚等の構造物調査・撮影にも対応します。',
+          icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                 </svg>`
+        }
+      };
+
+      function parseCSV(text) {
+        const rows = [];
+        let row = [], cell = '', inQuotes = false;
+        for (let i = 0; i < text.length; i++) {
+          const char = text[i], next = text[i + 1];
+          if (inQuotes) {
+            if (char === '"' && next === '"') { cell += '"'; i++; }
+            else if (char === '"') { inQuotes = false; }
+            else { cell += char; }
+          } else {
+            if (char === '"') { inQuotes = true; }
+            else if (char === ',') { row.push(cell.trim()); cell = ''; }
+            else if (char === '\n' || (char === '\r' && next === '\n')) {
+              row.push(cell.trim()); rows.push(row);
+              row = []; cell = '';
+              if (char === '\r') i++;
+            } else { cell += char; }
+          }
+        }
+        if (cell || row.length) { row.push(cell.trim()); rows.push(row); }
+        return rows;
+      }
+
+      const container = document.getElementById('service-menu-container');
+      try {
+        const separator = CSV_URL.includes('?') ? '&' : '?';
+        const response = await fetch(`${CSV_URL}${separator}t=${new Date().getTime()}`);
+        if (!response.ok) throw new Error('CSV fetch failed');
+
+        const csvText = await response.text();
+        const rows = parseCSV(csvText).slice(1); // ヘッダー行を除外
+
+        const activeItems = rows
+          .filter(r => r.length >= 7 && r[6].toUpperCase() === 'TRUE')
+          .map(r => ({
+            order: Number(r[0]) || 999,
+            category: r[1],
+            name: r[2],
+            detail: r[3],
+            price: r[4],
+            note: r[5]
+          }))
+          .sort((a, b) => a.order - b.order);
+
+        const grouped = {};
+        activeItems.forEach(item => {
+          if (!grouped[item.category]) grouped[item.category] = [];
+          grouped[item.category].push(item);
+        });
+
+        container.innerHTML = Object.keys(grouped).map(cat => {
+          const meta = CATEGORY_META[cat] || { desc: '', icon: '' };
+          const itemsHtml = grouped[cat].map(item => `
+            <div class="border-b border-slate-700/60 pb-3 last:border-b-0 last:pb-0">
+              <div class="flex justify-between items-baseline text-sm gap-2">
+                <span class="text-slate-100 font-medium">${item.name}</span>
+                <span class="text-cyan-400 font-mono font-semibold whitespace-nowrap">${item.price}</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-1 leading-relaxed">${item.detail}</p>
+            </div>
+          `).join('');
+
+          return `
+            <div class="bg-slate-800/60 border border-slate-700 rounded-lg p-6 flex flex-col justify-between">
+              <div>
+                <div class="text-cyan-400 mb-4">${meta.icon}</div>
+                <h3 class="text-lg font-bold text-white mb-2">${cat}</h3>
+                <p class="text-slate-400 text-sm mb-6 leading-relaxed">${meta.desc}</p>
+                <div class="pt-4 border-t border-slate-700/60 space-y-3">
+                  ${itemsHtml}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (error) {
+        console.error('サービスメニューの取得に失敗しました:', error);
+        container.innerHTML = '<p class="text-slate-400 text-sm col-span-full text-center py-4">現在メニューを読み込めません。詳細はお問い合わせフォームよりご相談ください。</p>';
+      }
+    })();
+  </script>
+
   <!-- お問い合わせフォーム送信用スクリプト -->
   <script>
     document.getElementById('contact-form').addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      // ★ここにステップ2で取得したウェブアプリURLを貼り付けます★
       const GAS_ENDPOINT_URL = 'https://script.google.com/macros/s/AKfycbwBBXlwAZwbAyTUBRrzEL2b9I3SkCXecdlLaHoO8YW-8UefJowlBOFj2VEee4OADiXdrg/exec';
 
       const form = e.target;
       const submitBtn = document.getElementById('submit-btn');
       const statusEl = document.getElementById('form-status');
 
-      // 入力値の取得
       const payload = {
         name: form.name.value,
         email: form.email.value,
@@ -259,7 +325,6 @@
         hp_field: form.hp_field.value
       };
 
-      // 送信中のUI制御
       submitBtn.disabled = true;
       submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
       submitBtn.innerHTML = '送信中...';
@@ -294,21 +359,10 @@
     });
   </script>
 
-<!-- フッター -->
-  <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500 space-y-2">
-    <div>
-      <a href="/privacy.html" class="text-slate-400 hover:text-cyan-400 transition underline underline-offset-4">
-        プライバシーポリシー
-      </a>
-    </div>
-    <p>&copy; 2026-2027 I-BO OFFICE. All rights reserved.</p>
-  </footer>
-
   <!-- お知らせ動的取得スクリプト -->
   <script>
     (async function loadNotice() {
       try {
-        // ブラウザキャッシュを防止するためクエリパラメータを付与
         const response = await fetch(`notice.json?t=${new Date().getTime()}`);
         if (!response.ok) return;
 
